@@ -1,11 +1,9 @@
 from django.forms import (
     Form,
     CharField,
-    EmailField,
 )
 
 
-class CreateUserForm(Form):
-
-    username = CharField()
-    e_mail = EmailField()
+class StudentForm(Form):
+    name = CharField()
+    grades = CharField()

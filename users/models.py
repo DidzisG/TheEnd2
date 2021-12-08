@@ -1,9 +1,7 @@
 from django.db import models
 
 
-class User:
+class StudentModel(models.Model):
+    name = models.CharField(max_length=100, default='xx')
+    grades = models.CharField(max_length=100, default='xx')
 
-    def __init__(self, username, e_mail):
-
-        self.username = username
-        self.e_mail = e_mail

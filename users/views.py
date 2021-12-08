@@ -1,38 +1,38 @@
 from django.shortcuts import render
 
-from .models import User
-from .forms import CreateUserForm
+from .models import StudentModel
+from .forms import StudentForm
 
 users = []
 
 
-def get_users(request):
-
+def students(request):
+    users = StudentModel.objects.all()
     context = {
         'users': users,
     }
 
     return render(
         request,
-        template_name='users.html',
+        template_name='students.html',
         context=context,
     )
 
 
-def add_user(request):
+def add_student(request):
 
-    form = CreateUserForm(request.POST or None)
+    form = StudentForm(request.POST or None)
 
     if request.method == 'POST':
 
         if form.is_valid():
 
-            user = User(
-                username=form.cleaned_data['username'],
-                e_mail=form.cleaned_data['e_mail'],
+            user = StudentModel(
+                name=form.cleaned_data['name'],
+                grades=form.cleaned_data['grades'],
             )
 
-            users.append(user)
+            user.save()
 
             context = {
                 'user': user,
@@ -40,7 +40,7 @@ def add_user(request):
 
             return render(
                 request,
-                template_name='user.html',
+                template_name='student.html',
                 context=context,
             )
 
@@ -50,6 +50,23 @@ def add_user(request):
 
     return render(
         request,
-        template_name='add_user.html',
+        template_name='add_student.html',
         context=context,
     )
+
+
+def get_student(request, name_id):
+
+    user = StudentModel.objects.get(id=name_id)
+
+    context = {
+    'user': user,
+    }
+
+    return render(
+        request,
+        template_name= 'student.html',
+        context= context,
+
+    )
+

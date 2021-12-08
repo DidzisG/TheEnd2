@@ -19,7 +19,9 @@ from django.urls import path
 import users.views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', users.views.get_users),
-    path('add-user', users.views.add_user)
+
+    path('', users.views.students),
+    path('student/add', users.views.add_student),
+    path('student/<int:name_id>', users.views.get_student, name='get-student'),
+
 ]

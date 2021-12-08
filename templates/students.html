@@ -2,15 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Users</title>
+    <title>Students</title>
 </head>
 <body>
 
     <ul>
         {% for user in users %}
         <li>
-            <strong>{{ user.username }}</strong> <br>
-            E-mail: {{ user.e_mail }}
+            <a href="{% url 'get-student' name_id=user.id %}"></a>
+            <strong>{{ user.name }}</strong> <br>
+
+                    Average grade:
+
         </li>
         {% endfor %}
     </ul>
