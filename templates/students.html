@@ -9,11 +9,11 @@
     <ul>
         {% for user in users %}
         <li>
-            <a href="{% url 'get-student' name_id=user.id %}"></a>
+            <a href="{% url 'get-student' name_id=user.id %}">
             <strong>{{ user.name }}</strong> <br>
 
                     Average grade:
-
+            </a>
         </li>
         {% endfor %}
     </ul>
